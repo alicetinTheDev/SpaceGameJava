@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +56,17 @@ public class Game extends JPanel implements KeyListener,ActionListener{
     public Game() {
         
             try {
-                spaceShipImg = ImageIO.read(new FileImageInputStream(new File("D:/Backup/Belgelerim/GitHub/JavaSpaceGame/MySpaceGame/src/assets/spaceship.png")));
+                //spaceShipImg = ImageIO.read(new FileImageInputStream(new File("D:/Backup/Belgelerim/GitHub/JavaSpaceGame/MySpaceGame/src/assets/spaceship.png")));
+                
+                //URL url = new URL("https://www.pngfind.com/pngs/m/41-410089_720-x-992-19-transparent-background-spaceship-png.png");
+                URL url = new URL("https://www.pikpng.com/pngl/b/199-1996308_spaceship-png-clipart-for-kids-spaceship-wmf-transparent.png");
+                
+                this.spaceShipImg = ImageIO.read(url);
+                
+//                File spaceShipImgFile = new File("SpaceShip.png");
+//                
+//                ImageIO.write(spaceShipImg, "png", spaceShipImgFile);                
+                
             } catch (IOException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -76,7 +87,7 @@ public class Game extends JPanel implements KeyListener,ActionListener{
         
         g.fillOval(targetBallX, 0, 20, 20);
         
-        g.drawImage(spaceShipImg, spaceShipX, 490, spaceShipImg.getWidth() / 10, spaceShipImg.getHeight() / 10, this);
+        g.drawImage(spaceShipImg, spaceShipX, 490, spaceShipImg.getWidth()/10, spaceShipImg.getHeight()/10, this);
     
         for(Fire fire : allFires){
             if(fire.getY() < 0)
@@ -105,8 +116,7 @@ public class Game extends JPanel implements KeyListener,ActionListener{
     }
     
     @Override
-    public void keyTyped(KeyEvent e) {
-        
+    public void keyTyped(KeyEvent e) {        
     }
 
     @Override
@@ -129,7 +139,7 @@ public class Game extends JPanel implements KeyListener,ActionListener{
                 spaceShipX += spaceDirX;
             } 
         }else if(c == KeyEvent.VK_CONTROL){
-            allFires.add(new Fire(spaceShipX+15, 470));
+            allFires.add(new Fire(spaceShipX+23, 470));
             
             fireCounter++;
         }
