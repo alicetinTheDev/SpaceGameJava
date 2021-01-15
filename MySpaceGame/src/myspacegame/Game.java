@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.imageio.stream.FileImageInputStream;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -104,9 +104,18 @@ public class Game extends JPanel implements KeyListener,ActionListener{
            timer.stop();
            String finalMessage = "You won!\n" +
                                  "Fires: " + fireCounter +
-                                 "\nElapsed time: " + elapsedTime/100 + " seconds..";
+                                 "\nElapsed time: " + elapsedTime/100 + " seconds..\n"+
+                                 "Want to restart the game..?";
            
-           JOptionPane.showMessageDialog(this, finalMessage);
+           int option = JOptionPane.showConfirmDialog(this, finalMessage, "You won!", JOptionPane.YES_NO_OPTION);
+           
+           switch(option){
+               case 0:
+                    MySpaceGame.start();                   
+                    break;
+               case 1:                     
+                    System.exit(0);  
+           }           
         }                    
     }
     
